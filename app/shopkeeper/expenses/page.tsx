@@ -105,7 +105,18 @@ useEffect(() => {
     0
   );
 
-  const today = new Date().toLocaleDateString("en-CA");
+  const [today, setToday] = useState("");
+
+useEffect(() => {
+  const currentDate = new Date();
+  const formattedDate = [
+    currentDate.getFullYear(),
+    String(currentDate.getMonth() + 1).padStart(2, "0"),
+    String(currentDate.getDate()).padStart(2, "0"),
+  ].join("-");
+
+  setToday(formattedDate);
+}, []);
 
   const todayExpenses = expenses
     .filter((expense) => expense.date === today)
