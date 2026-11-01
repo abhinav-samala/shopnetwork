@@ -106,6 +106,7 @@ useEffect(() => {
   );
 
   const [today, setToday] = useState("");
+  const [thisMonth, setThisMonth] = useState("");
 
 useEffect(() => {
   const currentDate = new Date();
@@ -116,13 +117,12 @@ useEffect(() => {
   ].join("-");
 
   setToday(formattedDate);
+  setThisMonth(formattedDate.slice(0, 7));
 }, []);
 
   const todayExpenses = expenses
     .filter((expense) => expense.date === today)
     .reduce((total, expense) => total + expense.amount, 0);
-
-  const thisMonth = new Date().toISOString().slice(0, 7);
 
   const monthlyExpenses = expenses
     .filter((expense) => expense.date.startsWith(thisMonth))
